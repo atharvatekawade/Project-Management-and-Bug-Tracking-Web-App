@@ -1,0 +1,138 @@
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        a:hover {
+            text-decoration: none;
+        }
+        .dot {
+        height: 25px;
+        width: 25px;
+        background-color: rgba(60,60,60,0.1);
+        border-radius: 50%;
+        display: inline-block;
+        text-align: center;
+        }
+        .circle {
+        height: 25px;
+        width: 25px;
+        background-color: rgba(250,250,250,1);
+        border-radius: 50%;
+        display: inline-block;
+        text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class='container un'>
+        <% if(arr.length>0){ %>
+            <h1 style="font-family: Georgia, 'Times New Roman', Times, serif;" class='mt-2 mb-3'>Requested Projects</h1>
+            <br />
+            <table class="table">
+                <thead>
+                <tr style="background-color: rgba(30,145,150); color: white;">
+                    <th scope="col">S.N.</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">#Active Bugs</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">Deadline</th>
+                    <th scope="col">Update</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% for(let i=0;i<arr.length;i++) { %>
+                        <% if(i%2==0) { %>
+                            <% if(arr[i].status==='Late') { %>
+                                <tr style="background-color: rgba(60,60,60,0.07);">
+                                    <th scope="row"><%= i+1 %></th>
+                                    <td><%=arr[i].title %></td>
+                                    <td><%=arr[i].description %></td>
+                                    <td><%=arr[i].status %></td>
+                                    <td><%=arr[i].bugs %></td>
+                                    <td><%=arr[i].start %></td>
+                                    <td><%=arr[i].deadline %></td>
+                                    <td><form method='POST' action='/deleteproject/<%=arr[i].project_id %>' style="display: inline;"><button style="border: none; color: #337AB7;">Delete</button></form> | <a href='/projectreport/<%=arr[i].project_id %>'>Report</a></td>
+                                </tr>
+                            <% } %>
+                            <% if(arr[i].status==='In progress') { %>
+                                <tr style="background-color: rgba(60,60,60,0.07);">
+                                    <th scope="row"><%= i+1 %></th>
+                                    <td><%=arr[i].title %></td>
+                                    <td><%=arr[i].description %></td>
+                                    <td><%=arr[i].status %></td>
+                                    <td><%=arr[i].bugs %> | Add Bug   <span class="circle" style="text-align: center; position: relative; top: -5px;"><a href='/addbug/<%= arr[i].project_id %>'><i class=" fa fa-lg fa-plus" aria-hidden="true" style="color: yellowgreen; position: relative; top: 4.5px;"></i></a></span></td>
+                                    <td><%=arr[i].start %></td>
+                                    <td><%=arr[i].deadline %></td>
+                                    <td><a href='/editproject/<%=arr[i].project_id %>'>Edit</a> | <form method='POST' action='/deleteproject/<%=arr[i].project_id %>' style="display: inline;"><button style="border: none; color: #337AB7;">Delete</button></form> | <form method='POST' action='/completeproject/<%=arr[i].project_id %>' style="display: inline;"><button style="border: none;"><i class="fa fa-lg fa-check-circle-o" aria-hidden="true" style="display: inline; color: yellowgreen;"></i></button></form> | <a href='/projectreport/<%=arr[i].project_id %>'>Report</a></td>
+                                </tr>
+                            <% } %>
+                            <% if(arr[i].status==='Completed') { %>
+                                <tr style="background-color: rgba(60,60,60,0.07);">
+                                    <th scope="row"><%= i+1 %></th>
+                                    <td><%=arr[i].title %></td>
+                                    <td><%=arr[i].description %></td>
+                                    <td>Completed on <%=arr[i].enddate %></td>
+                                    <td><%=arr[i].bugs %></td>
+                                    <td><%=arr[i].start %></td>
+                                    <td><%=arr[i].deadline %></td>
+                                    <td><form method='POST' action='/deleteproject/<%=arr[i].project_id %>' style="display: inline;"><button style="border: none; color: #337AB7;">Delete</button></form> | <a href='/projectreport/<%=arr[i].project_id %>'>Report</a></td>
+                                </tr>
+                            <% } %>
+                        <% } %>
+                        <% if(i%2==1) { %>
+                            <% if(arr[i].status==='Late') { %>
+                                <tr">
+                                    <th scope="row"><%= i+1 %></th>
+                                    <td><%=arr[i].title %></td>
+                                    <td><%=arr[i].description %></td>
+                                    <td><%=arr[i].status %></td>
+                                    <td><%=arr[i].bugs %></td>
+                                    <td><%=arr[i].start %></td>
+                                    <td><%=arr[i].deadline %></td>
+                                    <td><form method='POST' action='/deleteproject/<%=arr[i].project_id %>' style="display: inline;"><button style="border: none; color: #337AB7; background-color: white;">Delete</button></form> | <a href='/projectreport/<%=arr[i].project_id %>'>Report</a></td>
+                                </tr>
+                            <% } %>
+                            <% if(arr[i].status==='In progress') { %>
+                                <tr>
+                                    <th scope="row"><%= i+1 %></th>
+                                    <td><%=arr[i].title %></td>
+                                    <td><%=arr[i].description %></td>
+                                    <td><%=arr[i].status %></td>
+                                    <td><%=arr[i].bugs %> | Add Bug  <span class="dot" style="text-align: center; position: relative; top: -5px;"><a href='/addbug/<%= arr[i].project_id %>'><i class=" fa fa-lg fa-plus" aria-hidden="true" style="color: yellowgreen; position: relative; top: 4.5px;"></i></a></span></td>
+                                    <td><%=arr[i].start %></td>
+                                    <td><%=arr[i].deadline %></td>
+                                    <td><a href='/editproject/<%=arr[i].project_id %>'>Edit</a> | <form method='POST' action='/deleteproject/<%=arr[i].project_id %>' style="display: inline;"><button style="border: none; color: #337AB7; background-color: white;">Delete</button></form> | <form method='POST' action='/completeproject/<%=arr[i].project_id %>' style="display: inline;"><button style="border: none; background-color: white;"><i class="fa fa-lg fa-check-circle-o" aria-hidden="true" style="display: inline; color: yellowgreen;"></i></button></form> | <a href='/projectreport/<%=arr[i].project_id %>'>Report</a></td>
+                                </tr>
+                            <% } %>
+                            <% if(arr[i].status==='Completed') { %>
+                                <tr>
+                                    <th scope="row"><%= i+1 %></th>
+                                    <td><%=arr[i].title %></td>
+                                    <td><%=arr[i].description %></td>
+                                    <td>Completed on <%=arr[i].enddate %></td>
+                                    <td><%=arr[i].bugs %></td>
+                                    <td><%=arr[i].start %></td>
+                                    <td><%=arr[i].deadline %></td>
+                                    <td><form method='POST' action='/deleteproject/<%=arr[i].project_id %>' style="display: inline;"><button style="border: none; color: #337AB7; background-color: white;">Delete</button></form> | <a href='/projectreport/<%=arr[i].project_id %>'>Report</a></td>
+                                </tr>
+                            <% } %>
+                        <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        <% } %>
+        <% if(arr.length===0){ %>
+            <br />
+            <h4 style="font-family: Georgia, 'Times New Roman', Times, serif;">No projects with requested parameters...</h4>
+        <% } %>
+    </div>
+</body>

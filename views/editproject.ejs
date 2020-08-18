@@ -1,0 +1,139 @@
+<html>
+  <head>
+    <title>Edit Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    
+    <style>
+        body{
+                margin:0;
+                padding:0;
+                background-position: center;
+                font-family: sans-serif;
+                z-index: 0;
+                background-image: url('');
+                background-color: rgb(255,255,202,0.75);
+                background-size: cover;
+            }
+        #a{
+            width: 68.5%;
+            margin-top: 0px;
+        }
+        #b{
+            width: 68.5%;
+            border:0px solid rgba(255,255,255,0);
+            margin-top: 0px;
+            background-color: rgba(0,0,0,0);
+            color: rgba(0,0,0,0);
+        }
+    </style>
+
+    <!-- Add custom stylesheet here -->
+  </head>
+  <body style="margin-top: 20px;" onmouseover="checkform()">
+    <h2 style="color: rgba(255,255,255,0);">Yo</h2>
+    <h4 style="color: rgba(255,255,255,0);">Yo</h4>
+    
+
+    <div class="contact-background-image" style="margin-left: 270px; margin-bottom: 30px;z-index: 10;">
+		<div class="ui container margin-bottom-30">
+            <div class="ui container">
+                <% if(red && red.length>0){ %>
+                    <div class="ui blue message" id='a'>
+                        <%= red %>
+                    </div>
+                <% } %>
+                <% if(!red || red.length===0){ %>
+                    <div id='b'>
+                        <h5>Hi there </h5>
+                        <h5>Hi there </h5>   
+                    </div>
+                <% } %>
+                <form class="ui form pad-top-30 pad-bottom-30" method='POST' action='/editproject/<%= project.project_id %>'>
+                    <div class="ui container margin-top-30">
+                        <h2 class="huge header inverted" style="margin-bottom: 10px;">Edit Project:</h2>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Title</label>
+                                <input type="text" id='title' name="title" placeholder="Project Title" style="width:300px; height: 40px;" onKeyup="checkform()" value="<%= project.title %>">
+                            </div>
+                            <div class="field">
+                                <label>Project Head</label>
+                                
+                                <div class="ui container">
+                                    <select class="ui search dropdown" name='emp' id='emp'>
+                                        <option value="<%= e.emp_id %>"><%= e.name %></option>
+                                        <% for(let i=0;i<users.length;i++){ %>
+                                            <option value="<%= users[i].emp_id %>"><%= users[i].name %> - <%= users[i].branch %></option>
+                                        <% } %>
+                                                
+                                    </select>
+                                </div>
+                                
+                            
+                            </div>
+                            
+                            
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Description</label>
+                                <textarea placeholder='Description....' style="width:300px; height: 40px;" name='description' id='description'><%= project.description %></textarea>
+                            </div>
+                            <div class="field">
+                                <label style="margin-top: 30px;">Client</label>
+                                <div class='ui container margin-top-10'>
+                                    
+                                    <select class="ui search dropdown" name='client' id='client'>
+                                        <option value="<%= c.client_id %>"><%= c.name %></option>
+                                        <% for(let i=0;i<clients.length;i++){ %>
+                                            <option value="<%= clients[i].client_id %>"><%= clients[i].name %></option>
+                                        <% } %>                
+                                    </select>
+                                </div>
+                            
+                            </div>
+                        </div>
+                            <div class="field" style="margin-left: 30%;">
+                                <label>Start-Date</label>
+                                <input type="text" name="startdate" placeholder="dd-mm-yyyy" style="width:200px; height: 40px;" id='startdate' value=<%= project.start %>>
+                            </div>
+                        <button class="ui primary button" id="submitbutton" style="color: cornsilk; background-color: cornflowerblue; margin-left: 34%; margin-top: 20px;" disabled="disabled">Edit</button>
+                    </div>
+                </form>
+                <br />
+            </div>	
+		</div>
+	</div>
+    
+  
+    <!-- Write your html code here -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <script> 
+        $(document).ready(function(){
+             $('.ui.dropdown') .dropdown();
+       });
+    </script>
+    <script type="text/javascript" language="javascript">
+        function checkform()
+        {
+            let a = document.getElementById('title').value.length;
+            let b = document.getElementById('emp').value.length;
+            let c = document.getElementById('description').value.length;
+            let d = document.getElementById('startdate').value.length;
+            let e = document.getElementById('deadline').value.length;
+            let f = document.getElementById('client').value.length;
+            let cansubmit = true;
+
+            if(a*b*c*d*e*f===0){
+                cansubmit=false;
+            }
+    
+            
+    
+            document.getElementById('submitbutton').disabled = !cansubmit;
+        }
+    </script> 
+  </body>
+</html>

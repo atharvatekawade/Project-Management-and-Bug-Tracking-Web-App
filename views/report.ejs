@@ -1,0 +1,125 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+        .dot {
+        position: relative;
+        top: -6px;
+        text-align: center;
+        height: 30px;
+        width: 30px;
+        background-color: rgba(60,55,58,0.2);
+        border-radius: 50%;
+        display: inline-block;
+        }
+    </style>
+</head>
+<body style="background-color: rgba(255,255,202,0.25);">
+    <div class="container mt-3 p-2">
+        <% if(msg && msg.length>0){ %>
+            <div class="alert alert-primary" role="alert">
+                <%= msg %>
+            </div>
+        <% } %>
+        <br />
+        <% if(status==='Completed'){ %>
+            <h6 style="color: rgba(76,187,23,0.75);">Status:Completed <%= exp %> days before</h6>
+        <% } %>
+        <% if(status==='Late'){ %>
+            <h6 style="color: rgba(220,20,60,0.85);">Status:Late</h6>
+        <% } %>
+        <% if(status==='In progress...'){ %>
+            <h6 style="color: rgba(253,106,2,0.8);">Status:In progress...</h6>
+        <% } %>
+        <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">Project Report</h2>
+        <hr />
+        <h5>Project Title  :-</h5>
+        <p><%= project.title %></p>
+        <h5>Description  :-</h5>
+        <p><%= project.description %></p>
+        <h5>Client  :-</h5>
+        <p><%= c %></p>
+        <h5>Project Incharge  :-</h5>
+        <p><%= emp %></p>
+        <h5>Start Date  :-</h5>
+        <p><%= project.start %></p>
+        <h5>Deadline  :-</h5>
+        <p><%= project.deadline %></p>
+        <% if (bugs.length>0) { %>
+            <br />
+            <h3 class='mb-3'>Related Bugs:</h3>
+            <div class='container'>
+                <% for(let i=0;i<bugs.length;i++){ %>
+                    <div class="card p-2" style="border: 1.75px solid rgba(55,48,56,0.45)">                         
+                        <div class="card-block p-2" id='card'>
+                            <br />
+                            <% if (bugs[i].enddate!=='Not') { %>
+                                <h6 class='float-right' style="color: rgba(76,187,23,0.75);">Status: Resolved on <%= bugs[i].enddate %></h6>
+                            <% } %>
+                            <% if (bugs[i].enddate==='Not') { %>
+                                <h6 class='float-right' style="color: rgba(253,106,2,0.8);">Status: Not resolved</h6>
+                            <% } %>
+                            <h4 style="color: #007BFF;"><%= i+1 %>) <%= bugs[i].title %></h4>
+                            <br />
+                            <h6>Started on: <%= bugs[i].start %></h6>
+                            <h6>Description:</h6>
+                            <p><%= bugs[i].description %></p>
+                            <% if (bugs[i].enddate!=='Not') { %>
+                                <h6>Remarks:</h6>
+                                <p><%= bugs[i].remarks %></p>
+                                <br />
+                                
+                                <form method="POST" action="/deletebug/<%= bugs[i].bug_id %>" style="display: inline;"><button class="btn btn-sm btn-outline-danger">Delete</button></form>
+                                <a href='/editbugs/<%= bugs[i].bug_id %>' class="btn btn-sm btn-outline-secondary" style="display: inline;">Edit</a>
+                            <% } %>
+        
+                            <% if (bugs[i].enddate==='Not' && status!=='Late') { %>
+                                <br />
+                                <a href='/editbug/<%= bugs[i].bug_id %>' class="btn btn-sm btn-outline-secondary" style="display: inline;">Edit</a>
+                                <form method="POST" action="/deletebug/<%= bugs[i].bug_id %>" style="display: inline;"><button class="btn btn-sm btn-outline-danger">Delete</button></form>
+                                <a href='/completebug/<%= bugs[i].bug_id %>' class='dot'><i class=" fa fa-lg fa-check" aria-hidden="true" style="color: yellowgreen; top: 5px; position: relative;"></i></a>
+                            <% } %>
+                        </div>
+                    </div>
+                    <br />
+                <% } %>
+                <br />
+                <% if (project.enddate==='Not') { %>
+                    <% if (status!=='Late') { %>
+                        <span class='mr-1 mb-2' style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 24px;">Add Bug</span><span class="dot mb-2" style="text-align: center; position: relative; top: -7.2px;"><a href='/addbug/<%= project.project_id %>'><i class=" fa fa-lg fa-plus" aria-hidden="true" style="color: yellowgreen; position: relative; top: 6px;"></i></a></span>
+                    <% } %>
+                    <% if (status!=='Late' && project.enddate==='Not') { %>
+                        <a href='/editproject/<%=project.project_id %>' class="btn btn-outline-secondary">Edit Project</a>
+                        <form method='POST' action='/completeproject/<%=project.project_id %>' style="display: inline;" class='ml-2'><button style="border: none; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 24px; background-color: rgba(0,0,0,0);">Complete Project<i class="ml-1 fa fa-lg fa-check-circle-o" aria-hidden="true" style="display: inline; color: yellowgreen;"></i></button></form>
+                    <% } %>
+                    <form method='POST' action='/deleteproject/<%=project.project_id %>' style="display: inline;"><button class="btn btn-outline-danger">Delete Project</button></form>
+                    <br />
+                <% } %>
+            </div>
+        <% } %>
+        <% if (bugs.length===0) { %>
+            <h3 class='mt-2 mb-2'>No bugs encountered...</h3>
+            <br />
+            <% if (project.enddate==='Not' && status!=='Late') { %>
+                <span class='mr-1' style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 24px;">Add Bug</span><span class="dot" style="text-align: center; position: relative; top: -7.2px;"><a href='/addbug/<%= project.project_id %>'><i class=" fa fa-lg fa-plus" aria-hidden="true" style="color: yellowgreen; position: relative; top: 6px;"></i></a></span>
+                
+            <% } %>
+            <% if (status!=='Late' && project.enddate==='Not') { %>
+                <a href='/editproject/<%=project.project_id %>' class="btn btn-outline-secondary ml-3">Edit Project</a>
+                <form method='POST' action='/completeproject/<%=project.project_id %>' style="display: inline;" class="ml-2"><button style="border: none; background-color: rgba(0,0,0,0); font-family: Georgia, 'Times New Roman', Times, serif; font-size: 24px;">Complete Project<i class="ml-1 fa fa-lg fa-check-circle-o" aria-hidden="true" style="display: inline; color: yellowgreen;"></i></button></form>
+                <hr class='mt-2 mb-2' style="border-top: 1px solid black;"/>
+            <% } %>
+            <form method='POST' action='/deleteproject/<%=project.project_id %>' style="display: inline;"><button class="btn btn-outline-danger">Delete Project</button></form>
+            
+        <% } %>
+        
+    </div>
+</body>

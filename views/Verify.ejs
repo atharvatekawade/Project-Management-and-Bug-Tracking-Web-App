@@ -1,0 +1,17 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <style>
+    </style>
+</head>
+<body>
+    <div class="ui container margin-bottom-30">
+        <form class="ui form pad-top-30 pad-bottom-30" method='POST' action='/verify/<%= token %>/<%= name %>'>
+            <h2 class="huge header inverted" style="margin-bottom: 10px;">Confirm Account by Entering Password:</h2>
+            <div class="field">
+                <label for="password">Title</label>
+                <input type="password" id='password' name="password" placeholder='Enter a Strong Password' style="width:300px; height: 40px;">
+            </div>
+            <button class="ui primary button" id="submitbutton" style="color: cornsilk; background-color: cornflowerblue; margin-left: 34%; margin-top: 20px;">Submit</button>
+        </form>
+    </div>
+</body>

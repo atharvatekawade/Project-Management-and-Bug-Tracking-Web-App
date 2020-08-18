@@ -1,0 +1,103 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            z-index: 0;
+            background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwcNDQ0NBw0HBwgHBw0HBwcHBw8IDQcNFREWFhURExUYHSggGBolJxMTITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NDg0NDisZFRkrKystLS0rKystKy0tKy0tLTcrKysrKysrLS0rKysrKysrKysrKysrKysrKysrKysrK//AABEIALwBDAMBIgACEQEDEQH/xAAZAAEBAQEBAQAAAAAAAAAAAAACAQMABgf/xAAWEAEBAQAAAAAAAAAAAAAAAAAAARH/xAAYAQEBAQEBAAAAAAAAAAAAAAACAQUABv/EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAwDAQACEQMRAD8A0xMPEx5fXttHHYWIuqOJh4mO1wYmHjsXVDEsLEsVQxMPExXBiYeJi6oYNh1MJQsGxpYNVQSw7BpKFiU7BqxQo2HUsKKzqU6NhKCUqlWEFGnRpKFg2NKFJRomhK9biHjsY+s8HYWJi64cTDxMcoYmHiYrhwbDTF1QxMPEsVQwbDsSwlCodg2KoWJYdHCULBsaWDYqhRsOxCUKNOwSihRrSjYRM6lOwasUKlJKShRp0aUUKhUSJ7DHYWOxjazdDHYWOx2roYmHiYqhiHiWLrgsSw0xVDBPEqqFiHYOEoWJTsGwlCoVSxVCjTqUlCwadGwiCjYdSqoUadGlFCjTo0lBKVQooUadGkQUTo4SvZY7DxMYus0HYWOx2uDEw8TF1QxLDxMVWeJYeJYSglhWJVUEp2CqhUp2DYShYNOpSUKNOjVihUpVKUIKNOjSihROjSUbAp0aUUKNOjSIaNOjSihRw6JK9riYeJjD1mjiYWOxdcGJYeJiqzxLDsTF1wYlhjYShYlh0bFIBsOxCUKNOxKqhYNOjYShRp0aSjRp0aUIKNh0aUUKNOjSIBp1KUVnRp0aUUKlKpSihRwxInt8TDxMYWsscTCx2Lqs8TGmDYuuDEsOpYqs7EsOwaSglOjSUKNOpYpBRp0aShRp1KUVnRrSjSIKNKpSihRp0aUUKNOjShBROjSihRp0aUUKNOjShBUwqhK9zjsLHYwdZQYONMHF1QxLDsSqoWDYdSwlCjYdGqoUadGlFGjTo0oQUTo0ooUadGlFGhWlClCCpSo0lGjSo0iGjToUoo0aVGkQ0aQ04oUadGlFGiQ0ie+xMPEx5/WSFg2HiWKoWDYdiWLqhRsOwaShYNaUaUUKNOjSIKNOjSihRp0aUIKNOjSihRp0aUUKNOjShBRp0aUWBRp0aUIKNKpTihRpUaUIKNOjSihUKiUV9BxMLEseeZIVLDsGxY4KNOxLCJnRrShSijRp0aUIKNOjSihRpUaUUaNKjShQKlKjSihUpUacIaFOjSihRp0aUIKNOjSihRpUaUIaNKjSijQp0acIKi1CV9DsSw7BsecY4VKdGkoUadGlCZ1KdClFCpSo0iCjTo0oQUadClFGjSo04sGjSo0oQVKVGlFGhTo0oUCjSo0oQ0aVGnFGjSo0oQ0KdGlFCjToUoQ0SolFfR7Bp0a83GMFCnRpwoNGlRpRQo06FKENGlRpwhoU6NKKFGlRpENGlRpRYNCnRpwgo0qNKKNGlRpQho0qNKKFGnRpQgo06FOFBo0qNKKNCnRpRYFEqJE+kUaVGvNxjQaNKjShQKNKjTijRpUaUIKNKjShDRpUacWDQp0KUIaNKjSijRpUaUIaFOhTUaNKjShDRpUaSjRpUaUKDQp0KcIaNKjSijRpUaUWBRKiRP/Z');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <br />
+    <br />
+    <div class="container mt-5">
+        
+        <% if(arr.length>=3){ %>
+            <div class="row">
+                <% for(let i=0;i<arr.length;i++){ %>
+                    <div class="col-sm-12 col-md-6 col-lg-4 mt-2 mb-5">
+                        <div class="card" style="border-radius: 5px; z-index: 24;">
+                            <div class="card-header" style="text-align: center;">
+                                <span class="px-2 pt-3" style="font-size: 16.5px;"><b><%= arr[i].title %>(<%= arr[i].start %>)</b></span>
+                                <p class="card-subtitle mt-2 text-muted" style="text-align: center; z-index: 100;"><i>- Client: <%= d[arr[i].client_id] %></i></p>
+                            </div>
+                            <% if(arr[i].description.length>200){ %>
+                                <div class="card-body pb-3 px-4" style="color: black;"><b><span style="color:rgba(253, 80, 55, 0.822)">Deadline: <%= arr[i].deadline %></span></b><p><%= arr[i].description.slice(0,200)+'...' %></p></div>
+                            <% } %>
+                            <% if(arr[i].description.length<=200){ %>
+                                <div class="card-body" style="color: black;"><b><span style="color:rgba(253, 80, 55, 0.822)">Deadline: <%= arr[i].deadline %></span></b><p><%= arr[i].description %></p></div>
+                            <% } %>
+                            <div class="card-footer p-4"style="text-align: center;"><a href='/viewclientproject/<%= arr[i].project_id %>' class='btn btn-outline px-4 py-1' style="background-color: #049161; color: #fff;">View</a></div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        <% } %>
+        <% if(arr.length===2){ %>
+            <div class="row">
+                <div class="col-sm-0 col-md-0 col-lg-2 mt-2 mb-5"></div>
+                <% for(let i=0;i<arr.length;i++){ %>
+                    <div class="col-sm-12 col-md-6 col-lg-4 mt-2 mb-5">
+                        <div class="card" style="border-radius: 5px; z-index: 24;">
+                            <div class="card-header" style="text-align: center;">
+                                <span class="px-2 pt-3" style="font-size: 16.5px;"><b><%= arr[i].title %> (<%= arr[i].start %>)</b></span>
+                                <p class="card-subtitle mt-2 text-muted" style="text-align: center; z-index: 100;"><i>- Client: <%= d[arr[i].client_id] %></i></p>
+                            </div>
+                            <% if(arr[i].description.length>200){ %>
+                                <div class="card-body pb-3 px-4"><b><span style="color:rgba(253, 80, 55, 0.822)">Deadline: <%= arr[i].deadline %></span></b><p class="mt-2"><%= arr[i].description.slice(0,200)+'...' %></p></div>
+                            <% } %>
+                            <% if(arr[i].description.length<=200){ %>
+                                <div class="card-body"><b><span style="color:rgba(253, 80, 55, 0.822)">Deadline: <%= arr[i].deadline %></span></b><p class='mt-2'><%= arr[i].description %></p></div>
+                            <% } %>
+                            <div class="card-footer p-4"style="text-align: center;"><a href='/viewclientproject/<%= arr[i].project_id %>' class='btn btn-outline px-4 py-1' style="background-color: #049161; color: #fff;">View</a></div>
+                        </div>
+                    </div>
+                <% } %>
+                <div class="col-sm-0 col-md-0 col-lg-2 mt-2 mb-5"></div>
+            </div>
+        <% } %>
+        <% if(arr.length===1){ %>
+            <div class="row">
+                <div class="col-sm-0 col-md-3 col-lg-4 mt-2 mb-5"></div>
+                <% for(let i=0;i<arr.length;i++){ %>
+                    <div class="col-sm-12 col-md-6 col-lg-4 mt-2 mb-5">
+                        <div class="card" style="border-radius: 5px; z-index: 24;">
+                            <div class="card-header" style="text-align: center;">
+                                <span class="px-2 pt-3" style="font-size: 16.5px;"><b><%= arr[i].title %> (<%= arr[i].start %>)</b></span>
+                                <p class="card-subtitle mt-2 text-muted" style="text-align: center; z-index: 100;"><i>- Client: <%= d[arr[i].client_id] %></i></p>
+                            </div>
+                            <% if(arr[i].description.length>200){ %>
+                                <div class="card-body pb-3 px-4"><b><span style="color:rgba(253, 80, 55, 0.822)">Deadline: <%= arr[i].deadline %></span></b><%= arr[i].description.slice(0,200)+'...' %></div>
+                            <% } %>
+                            <% if(arr[i].description.length<=200){ %>
+                                <div class="card-body"><b><span style="color:rgba(253, 80, 55, 0.822)">Deadline: <%= arr[i].deadline %></span></b><p><%= arr[i].description %></p></div>
+                            <% } %>
+                            <div class="card-footer p-4"style="text-align: center;"><a href='/viewclientproject/<%= arr[i].project_id %>' class='btn btn-outline px-4 py-1' style="background-color: #049161; color: #fff;">View</a></div>
+                        </div>
+                    </div>
+                <% } %>
+                <div class="col-sm-0 col-md-3 col-lg-4 mt-2 mb-5"></div>
+            </div>
+        <% } %>
+        <% if(arr.length===0){ %>
+            <body style="background-color: white; background-image: url('');">
+                <span style="font-size: 30px; font-weight: 500;">No new projects</span>  <img src='data:image/jpeg;base64,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' width="35" height="40" style="position: relative; top: -5px;" />
+                <hr />
+            </body>
+        <% } %>
+        <br />
+        <br />
+        <br />
+    </div>
+</body>

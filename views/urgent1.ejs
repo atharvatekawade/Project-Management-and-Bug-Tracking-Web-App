@@ -1,0 +1,114 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<script>
+    Pusher.logToConsole = true;
+
+    const pusher = new Pusher('ddb9920047594e5985e8', {
+    cluster: 'ap2'
+    });
+
+    const channel = pusher.subscribe('bug');
+    channel.bind('deadline', function(data) {
+        const e=document.querySelector('#client'+data.project);
+        e.innerHTML='Can we move the deadline to '+data.deadline+'?';
+        document.querySelector('#yes'+data.project).style.display = "block";
+        document.querySelector('#no'+data.project).style.display = "block";
+    });
+    
+</script>
+<body>
+    <div class='container mt-2'>
+        <% if(arr.length===0){ %>
+            <br />
+            <p style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 30px; margin-left: 6%;">Nothing new expected...</p>
+            <hr />
+        <% } %>
+        <% if(arr.length>0){ %>
+            <div class='container'>
+                <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;">List of Projects expected in the next 5 days...</h2>
+                <br />
+                <table class="table">
+                    <thead style="color: white; background-color: rgb(33, 124, 46,0.85);">
+                      <tr>
+                        <th scope="col">S.N.</th>
+                        <th scope="col">Project Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Time Left</th>
+                        <th scope="col">Go to Report</th>
+                        <th scope="col">Requests</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% for(let i=0;i<arr.length;i++){ %>
+                            <tr>
+                                
+                                <th scope="row"><%= i+1 %>.</th>
+                                <td><%= arr[i].title %></td>
+                                <td><%= arr[i].description %></td>
+                                <td><%= arr[i].left %> days</td>
+                                <td><a href='/projreport/<%= arr[i].project_id %>' class="btn btn-warning" style="background-color: orange; color: white;">View Report</a></td>
+                                <td>
+                                    <div className='container'>
+                                        <button type="button" class="btn btn-primary px-3" data-toggle="modal" data-target="<%= '#modal'+arr[i].project_id %>">
+                                            View Request
+                                        </button>
+                                          <!-- Modal -->
+                                          <div class="modal fade" id="<%= 'modal'+arr[i].project_id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="myFunction(<%= arr[i].project_id %>)" >
+                                                        <span aria-hidden="true">&times;</span> 
+                                                    </button>
+                                                    <% if(!d[arr[i].project_id] || d[arr[i].project_id].length==0){ %>
+                                                        <b><h5 style="text-align: center; font-family: Georgia, 'Times New Roman', Times, serif;" class="mb-3">Latest Request</h5></b>
+                                                        <h6><div id="<%= 'client'+arr[i].project_id %>">
+                                                        </div></h6>
+                                                        <button class="px-3 py-0 btn btn-success mt-1" style="display: none;" id="<%= 'yes'+arr[i].project_id %>">Yes</button>
+                                                        <button class="px-3 py-0 btn btn-danger mt-1" style="display: none;" id="<%= 'no'+arr[i].project_id %>">No</button>
+                                                    <% } %>
+                                                    <% if(d[arr[i].project_id] && d[arr[i].project_id].length>0){ %>
+                                                        <b><h5 style="text-align: center; font-family: Georgia, 'Times New Roman', Times, serif;" class="mb-3">Latest Request</h5></b>
+                                                        <h6>
+                                                            <div id="<%= 'client'+arr[i].project_id %>"><%= 'Can we move the deadline to '+d[arr[i].project_id]+'?' %></div>
+                                                        </h6>
+                                                        <button class="px-3 py-0 btn btn-success mt-1" style="display: block;" id="<%= 'yes'+arr[i].project_id %>">Yes</button>
+                                                        <button class="px-3 py-0 btn btn-danger mt-1" style="display: block;" id="<%= 'no'+arr[i].project_id %>">No</button>
+                                                    <% } %>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <script>
+                                document.querySelector('#yes'+<%= arr[i].project_id %>).addEventListener("click",() => {
+                                    axios.post('/reply/'+<%= arr[i].project_id %>,{reply:true})
+                                        .then(res => window.location='/notifications/urgent/'+res.data)
+                                })
+                                document.querySelector('#no'+<%= arr[i].project_id %>).addEventListener("click",() => {
+                                    axios.post('/reply/'+<%= arr[i].project_id %>,{reply:false})
+                                        .then(res => window.location='/notifications/urgent/'+res.data)
+                                })
+                            </script>
+                        <% } %>
+                    </tbody>
+                  </table>
+            </div>
+        <% } %>
+    </div>
+</body>

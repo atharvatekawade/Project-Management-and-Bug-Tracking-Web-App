@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <title>Add Project</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+        
+        <style>
+            body{
+                    margin:0;
+                    padding:0;
+                    background-position: center;
+                    font-family: sans-serif;
+                    z-index: 0;
+                    background-image: url('');
+                    background-size: cover;
+                }
+            #a{
+                width: 68.5%;
+                margin-top: 0px;
+            }
+            #b{
+                width: 68.5%;
+                border:0px solid rgba(255,255,255,0);
+                margin-top: 0px;
+                background-color: rgba(0,0,0,0);
+                color: rgba(0,0,0,0);
+            }
+        </style>
+
+        <!-- Add custom stylesheet here -->
+    </head>
+    <body style="margin-top: 20px;" onmouseover="checkform()">
+        <h2 style="color: rgba(255,255,255,0);">Yo</h2>
+        <h4 style="color: rgba(255,255,255,0);">Yo</h4>
+    
+
+        <div class="contact-background-image" style="margin-left: 270px; margin-bottom: 30px;z-index: 10;">
+            <div class="ui container margin-bottom-30">
+                <div class="ui container">
+                    <% if(red && red.length>0){ %>
+                        <div class="ui blue message" id='a'>
+                            <%= red %>
+                        </div>
+                    <% } %>
+                    <% if(!red || red.length===0){ %>
+                        <div id='b'>
+                            <h5>Hi there </h5>
+                            <h5>Hi there </h5>   
+                        </div>
+                    <% } %>
+                    <form class="ui form pad-top-30 pad-bottom-30" method='POST' action='/addproject/<%= id %>'>
+                        <div class="ui container margin-top-30">
+                            <div class="two fields">
+                                <div class="ui container field">
+                                    <b><label for='emp' style="position: relative; top: -10px;">Assign Project Head:</label></b>
+                                    <select class="ui search dropdown mt-4" name='emp' id='emp'>
+                                        <option value="">Select Project Head</option>
+                                        <% for(let i=0;i<users.length;i++){ %>
+                                            <option value="<%= users[i].emp_id %>"><%= users[i].name %> - <%= users[i].branch %></option>
+                                        <% } %>        
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <b><label for='startdate' style="position: relative; top: -10px;">Start-Date:</label></b>
+                                    <input type="text" class="mt-4" name="startdate" placeholder="dd-mm-yyyy" style="width:200px; height: 40px;" id='startdate'>
+                                </div>
+                                <button class="ui primary button" id="submitbutton" style="color: cornsilk; background-color: cornflowerblue; margin-left: 48% ; margin-top: 20px; position: relative; right: 570px" disabled="disabled">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                    <br />
+                </div>	
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <script> 
+        $(document).ready(function(){
+             $('.ui.dropdown') .dropdown();
+       });
+    </script>
+    <script type="text/javascript" language="javascript">
+        function checkform()
+        {
+            let b = document.getElementById('emp').value.length;
+            let f = document.getElementById('startdate').value.length;
+            let cansubmit = true;
+
+            if(b*f===0){
+                cansubmit=false;
+            }
+    
+            
+    
+            document.getElementById('submitbutton').disabled = !cansubmit;
+        }
+    </script> 
+    </body>

@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <style>
+            body{
+                margin:0;
+                padding:0;
+                background-position: center;
+                font-family: sans-serif;
+                z-index: 0;
+                background-image: url('');
+                background-color: rgb(255,255,202,0.75);
+                background-size: cover;
+            }
+            .loginbox{
+                border-radius: 24px;
+                width: 338px;
+                height: 410px;
+                color:#fff;
+                background-color:rgba(20,20,20,0.92);
+                top:50%;
+                left: 50%;
+                position: absolute;
+                transform: translate(-50%,-50%);
+                box-sizing: border-box;
+                z-index: 20;
+                padding: 70px 30px;
+            }
+            .avatar{
+                width: 120px;
+                height: 127px;
+                border-radius: 60%;
+                border:blueviolet;
+                position:absolute;
+                top:-50px;
+                left:calc(50% - 50px);
+                z-index: 40;
+            }
+            h1{
+                margin: 0;
+                padding: 0 0 20px;
+                text-align: center;
+                font-size: 22px;
+            }
+            .loginbox p{
+                margin: 0;
+                padding: 0;
+                font-weight: bold;
+            }
+            .loginbox input{
+                width:100%;
+                margin-bottom: 20px;
+            } 
+            .login input[type='text']{
+                
+                border-bottom: 1px solid red;
+                background: transparent;
+                outline:none;
+                height:40px;
+                
+            }
+            .login input[type='password']{
+                border: none;
+                border-bottom: 1px solid rgba(20,20,20,0.92);
+                outline:none;
+                height:40px;
+                
+                
+            }
+            #a{
+                z-index: 50;
+                color: rgba(255, 254, 234,0.83);
+                background-color: darkcyan;
+            }
+            #b{
+                color:rgba(255, 254, 234,0.83);
+                z-index: 45;
+                background-color: transparent;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                border-bottom: 1px solid rgba(200,200,200,0.76);
+                outline: none;
+            }
+            #alert{
+                font-weight: 40px;
+                color:rgba(245,20,0,0.95)
+            }
+            #test{
+                font-weight: 40px;
+                color:rgba(0,0,0,0)
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class='loginbox'>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTXRJEkUrtk1fBCrhAs-EQuPCzCXSRePvENEQ&usqp=CAU" class='avatar'>
+            <h1 class='mt-2'>Login Here</h1>
+            <% if(red!==undefined && red.length>0){ %>  
+                <p id='alert' style="font-size:13px" class='mb-3'>*<%= red %></p>
+            <% } %>
+            <% if(red === undefined || red.length===0){ %>
+                <p id='test' style="font-size:13px" class='mb-3'>Hi</p>
+            <% } %>
+            <form action='/login' method='POST' autocomplete="off">
+                <p>Username</p>
+                <input type="text" name='username' placeholder='Name' class='mt-2' id='b'>
+                <p>Password</p>
+                <input type="password" name='password' placeholder='password' class='mt-2' id='b'>
+                <input type="submit" value='Login' class='btn btn-primary mt-4' id='a'>
+            </form>
+        </div>
+    </body>
+</html>

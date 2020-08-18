@@ -1,0 +1,156 @@
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        #border{
+            height: 235px;
+            width: 180px;
+            padding:6px;
+            border: 2px solid rgba(40,42,38,0.2);
+            border-color:rgba(40,42,38,0.18);
+              
+        }
+        #saviour{
+            height: 256px;
+            width: 201px;
+            padding:4px;
+            border: 2px solid rgba(30,28.32,0);
+            border-color:rgba(40,42,38,0.1); 
+            margin-left: 38%;
+            margin-top: 8%;    
+        }
+        #icon{
+            top: -5px;
+            left: 20px;
+        }
+        #card{
+            border: 2px solid red;
+            border-color:rgba(40,42,38,0.15);
+            padding: 15px;
+            border-radius: 4px;
+            margin-left: 10%;
+            width: 80%;
+        }
+        #george{
+            left:10px;
+        }
+        #del{
+            border: none;
+            color: #007bff;
+        }
+        #del:hover{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body style="background-color: #EEE8D559; z-index: 0;">
+    <div class='container mt-5'>
+        <h1 style="text-align: center; font-family: Georgia, 'Times New Roman', Times, serif;"><u>Viewing Information for <%= emp.name %></u></h1>
+        <div class="mt-4" id='card' style="background-color: white;">
+            <div class="card-block">
+                <p class="card-text"><h3><i class="fa fa-envelope" aria-hidden="true"></i><b class="mr-2 ml-2">Email:</b></h3><span class="ml-4" style="font-size: 17.5px;"><%= emp.email %></span></p>
+                <hr />
+                <p class="card-text"><h3><i class="fa fa-phone" aria-hidden="true"></i><b class="mr-2 ml-2">Phone:</b></h3><span class="ml-4" style="font-size: 17.5px;"><%= emp.phone %></span></p>
+                <hr />
+                <p class="card-text"><h3><i class="fa fa-building" aria-hidden="true"></i><b class="mr-2 ml-2">Branch:</b></h3><span class="ml-4" style="font-size: 17.5px;"><%= emp.branch %></span></p>
+                <hr />
+                <p class="card-text"><h3><img src='data:image/png;base64,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'  width="50" height="60" /><b>Experience:</b></h3><span class="ml-4" style="font-size: 17.5px;"><%= exp %></span></p>
+                <hr />
+
+                    <p class="card-text"><h3><i class="fa fa-bar-chart" aria-hidden="true"></i><b class="mr-2 ml-2">Work Statistics:</b></h3></p>
+                    <% if (d===0) { %>
+                        <h5>Not yet worked on any project</h5>
+                        <br />
+                    <% } %>
+                    <% if (d>0) { %>
+                        <br class="mb-5"/>
+                        <h5>Projects:</h5>
+                        <div class='container mt-4' style="width:650px;">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    <% } %>
+                <div class="container">
+                    <a href='/edit/employee/<%= emp.emp_id %>' style="display: inline;">Edit</a><span class="ml-2" style="color: rgba(30,30,30,0.6);">|</span>
+                    <form method="=POST" action="/delete/employee/<%= emp.emp_id %>"  style="display: inline;">
+                        <button id='del'>Delete</button>                    
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <h6 style="color: rgba(0,0,0,0);">Hello</h6>
+    <a href='/' class="btn btn-success" style="margin-left: 18%;">Go Back</a>
+    <h6 style="color: rgba(0,0,0,0);">Hello</h6>
+    <hr class="mt-3 mb-3" />
+    <h1 style="color: rgba(0,0,0,0);">Hello</h1>
+    <script>
+        let a = '<%= a %>';
+        a=Number(a);
+        let b = '<%= b %>';
+        b=Number(b);
+        //let c=one+two;
+        let c = '<%= c %>';
+        c=Number(c);
+        let d = '<%= d %>';
+        d=Number(d);
+        let rem1=3-(d%3);
+        d=d+rem1;
+        var ctx = document.getElementById('myChart').getContext('2d');
+        Chart.defaults.global.defaultFontFamily='Lato';
+        Chart.defaults.global.defaultFontSize=18;
+        Chart.defaults.global.defaultFontColor='#777';
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'bar',
+
+            // The data for our dataset
+            data: {
+                labels: ['Completed on Time','Late','Ongoing'],
+                datasets: [{
+                    label: 'Progress',
+                    backgroundColor: ['rgba(57,255,20,0.6)','rgba(255, 99, 132,0.6)','rgba(255,191,0,0.6)'],
+                    data: [c,a,b],
+                    hoverBorderWidth:3,
+                    hoverBorderColor:'rgba(30,35,35,0.7)'
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: d,
+                            stepSize: 3
+                        },
+                        gridLines : {
+                            display : false
+                        }
+                    }],
+                    xAxes: [{
+                        barPercentage: 0.3,
+                        columnPercantage:0.5,
+                        gridLines : {
+                            display : false
+                        }
+                    }]
+                },
+                legend:{
+                    display:false
+                }
+            }
+        });        
+
+    </script> 
+</body>

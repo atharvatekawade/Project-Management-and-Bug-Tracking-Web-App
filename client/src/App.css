@@ -1,0 +1,231 @@
+.nav{
+  background-color: rgba(0,0,0,0.005);
+}
+
+.heading{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+  font-weight: 550;
+  color: rgba(10,125,255,0.7);
+  font-size: 45px;
+}
+
+.content{
+  font-size: 17.8px;
+}
+
+.gm-control-active{
+  display: none;
+}
+
+#dd{
+  color: rgba(0,123,255,0.75);
+}
+
+.footer{
+  background-color: rgba(30,27,25);
+  text-align: center;
+  color: rgba(240,245,240,0.5);
+}
+
+.notification{
+  background-color: rgba(10,15,10,0.8);
+  border-radius: 10px;
+  transition: left 1s ease-in-out;
+  height: 100%;
+
+}
+
+.invisible{
+  color: rgba(0,0,0,0);
+}
+
+.notifications{
+  color: rgba(240,254,245,0.8);
+}
+
+.notifications:hover{
+  text-decoration: none;
+  color: rgba(240,254,245,0.8);
+}
+
+.hover:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.number {
+  text-align: center;
+  height: 24px;
+  width: 24px;
+  background-color: white;
+  color: #007bff;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#m{
+  background-color:rgba(27,27,27,0.8);
+  color:red;
+  border-radius: 4px;
+  margin-top: 3px;
+  height: 60px;
+}
+#kya{
+      font-family: Georgia;
+      font-size: 50;
+      margin-left: 20%;
+      color: rgba(51,122,183,0.75);
+      z-index: 99999;
+  }
+
+#l{
+  background-color:goldenrod;
+  color: beige;
+  padding:12px 26px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.5s ease 0s;
+}
+
+#l:hover{
+  background-color:rgba(218,165,32,0.76);
+  color: #0088a9;
+
+}
+#jane{
+  color: rgba(30,30,30,0.45);
+  margin-left: 50%;
+}
+#woh{
+  font-size: 18;
+  font-weight: 400;
+  font-family: Georgia;
+}
+
+#yo{
+      color:rgba(245,245,220,0.5);
+      transition: all 0.3s ease 0s;
+}
+
+#a{
+  color: rgba(255,255,255,0.5);
+  background-color:rgba(27,27,27,0.8);
+  left: -40px; /* I see the first submenu cca. 10px before the parent LI */
+  margin-left: 0;
+  top:38.4px;
+  padding:0;
+  border-radius: 4px;
+}
+#yo:hover{
+  
+  color:rgba(0,136,169,0.8);
+  
+}
+
+#link{
+  color:rgba(245,245,220,0.5);
+  transition: all 0.3s ease 0s;
+}
+
+#link:hover{
+  color:rgba(0,136,169,0.8);
+  text-decoration: underline;
+  background-color:rgba(27,27,27,0.2);
+
+
+}
+#map {
+  height: 550px;  /* The height is 400 pixels */
+  width: 36%;  /* The width is the width of the web page */
+  border-radius: 8px;
+  margin-left: 30%;
+}
+#munda{
+  margin-left: 36%;
+  font-family: Georgia;
+  font-size: 22;
+}
+.gm-control-active{
+    display: none;
+}
+#kya{
+  margin-left: 32%;
+  margin-bottom: 2%;
+}
+#content{
+  font-family: "Alegreya Sans",sans-serif;
+  overflow-x: hidden;
+}
+.na{
+  height: 22%;
+  width: 0%;
+  position: fixed;
+  z-index: 1;
+  top: 200;
+  left: 0;
+  opacity: 0.9;
+  overflow-x: hidden;
+  padding-top: 35px;
+  border-radius: 3px;
+  margin-left: 15px;
+  transition: 0.7s;
+}
+
+
+.dot {
+  transition: 0.7s;
+  height: 50px;
+  width: 50px;
+  background-color: rgba(120,120,120);
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+}
+
+#inside{
+  height: 30px;
+  width: 30px;
+  position: relative;
+  top: 10px;
+}
+
+
+
+.na a{
+  display: block;
+  text-decoration: none;
+  color: #ccc;
+  margin-left: 2px;
+  margin-bottom: 3px;
+  font-size: 18px;
+}
+.na div:hover{
+  text-decoration: none;
+}
+#we{
+  color:rgba(245, 223, 117, 0.98);
+}
+
+.na .close{
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  margin-left: 50px;
+  font-size: 22px;
+}
+
+#hide{
+  color:rgba(2,78,180,0.8);
+  background-color: cornsilk;
+  height: 30px;
+  width: 20px;
+  border-radius: 50%;
+  padding-top: 3px;
+  padding-right: 6px;
+  padding-bottom: 2px;
+  padding-left: 6px;
+  transition: 0.3s;
+} 
+

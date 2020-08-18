@@ -1,0 +1,51 @@
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body{
+        background-color: rgba(255,255,202,0.25);
+    }
+    .card-block{
+        background-color: white;
+        padding-left: 1.5%;
+        padding-right: 1.5%;
+        padding-bottom: 1.5%;
+        border-radius: 5-x;
+    }
+    .up{
+        margin-top: 1.6%;
+    }
+</style>
+
+<div class="container mt-5" style="margin-top: 2%;">
+    <% for(let i=0;i<bugs.length;i++){ %>
+        <div class="card px-2" style="border: 1.75px solid rgba(55,48,56,0.45)">                         
+            <div class="card-block px-3" id='card'>
+                <br />
+                <% if (bugs[i].enddate!=='Not') { %>
+                    <b><h5 class='float-right' style="color: rgba(76,187,23,0.75);">Status: Resolved on <%= bugs[i].enddate %></h5></b>
+                <% } %>
+                <% if (bugs[i].enddate==='Not') { %>
+                    <b><h5 class='float-right' style="color: rgba(253,106,2,0.8);">Status: Not resolved</h5></b>
+                <% } %>
+                <h3 style="color: #007BFF;"><%= i+1 %>) <%= bugs[i].title %></h3>
+                <h5 class="up">Started on: <%= bugs[i].start %></h5>
+                <b><h5 class="up">Description:</h5></b>
+                <h4><p><%= bugs[i].description %></p></h4>
+                <% if (bugs[i].enddate!=='Not') { %>
+                    <h6>Remarks:</h6>
+                    <p><%= bugs[i].remarks %></p>
+                    <br />
+                <% } %>
+                <a href='/projectreport/<%= bugs[i].project_id %>' class="btn btn-success px-2 py-0 up">Project Report</a>
+            </div>
+        </div>
+        <br />
+    <% } %>
+</div>

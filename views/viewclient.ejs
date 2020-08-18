@@ -1,0 +1,28 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color: rgba(255,255,202,0.75);">
+    <div class="container">
+        <h1 style="text-align: center; font-family: Georgia, 'Times New Roman', Times, serif;">Information for <%= client.name %></h1>
+        <br />
+        <br />
+        <br />
+        <div class="card mt-3">
+            <div class="card-body p-2">
+                <p class="card-text"><h3><b class="mr-2">Email:</b></h3><span class="ml-4" style="font-size: 17.5px;"><%= client.email %></span></p>
+                <hr />
+                <p class="card-text"><h3><b class="mr-2">Phone:</b></h3><span class="ml-4" style="font-size: 17.5px;"><%= client.phone %></span></p>
+                <hr />
+                <p class="card-text"><h3><b class="mr-2">#Current Projects:</b></h3><span class="ml-4" style="font-size: 17.5px;"><%= a %></span></p>
+                <hr />
+                <p class="card-text"><h3><b class="mr-2">#All Projects:</b></h3><span class="ml-4" style="font-size: 17.5px;"><%= b %></span></p>
+            </div>
+        </div>
+    </div>
+</body>

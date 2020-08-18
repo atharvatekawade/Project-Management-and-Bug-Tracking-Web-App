@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <title>Edit Client</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    
+    <style>
+        body{
+                margin:0;
+                padding:0;
+                background-position: center;
+                font-family: sans-serif;
+                z-index: 0;
+                background-image: url('');
+                background-color: rgba(255,255,202,0.75);
+                background-size: cover;
+            }
+        #a{
+            width: 68.5%;
+            margin-top: 0px;
+        }
+        #b{
+            width: 68.5%;
+            border:0px solid rgba(255,255,255,0);
+            margin-top: 0px;
+            background-color: rgba(0,0,0,0);
+            color: rgba(0,0,0,0);
+        }
+    </style>
+
+    <!-- Add custom stylesheet here -->
+  </head>
+  <body style="margin-top: 20px;">
+    <h2 style="color: rgba(255,255,255,0);">Yo</h2>
+    <h4 style="color: rgba(255,255,255,0);">Yo</h4>
+    
+    <% if(exist && exist.length>0){ %>
+        <div class="ui container">
+            <div class="ui teal message"><%= exist %></div>
+        </div>
+    <% } %>
+    <% if(!exist || exist.length===0){ %>
+        <div class="ui container">
+            <h6 style="color: rgba(0,0,0,0);">Hi</h6>
+        </div>
+    <% } %>
+    <br />
+    <div class="contact-background-image" style="margin-left: 270px; margin-bottom: 30px;z-index: 10;">
+		<div class="ui container margin-bottom-30">
+            <div class="ui container">
+                <form class="ui form pad-bottom-30" method='POST'>
+                    <div class="ui container">
+                        <h2 class="huge header inverted" style="margin-bottom: 10px; margin-left: 25%;">Fill up Client Information</h2>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Client Name:</label>
+                                <input type="text" id='name' name="name" placeholder="Name" style="width:300px; height: 40px;" onKeyup="checkform()">
+                            </div>
+                            <div class="field">
+                                <label>Password:</label>
+                                <input type="password" id='password' name="password" placeholder="Name" style="width:300px; height: 40px;" onKeyup="checkform()">
+                            </div>                    
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Email:</label>
+                                <input type="email" id='email' name="email" placeholder="xyz@abc.com" style="width:300px; height: 40px;" onKeyup="checkform()">
+                            </div>
+                            <div class="field">
+                                <label>Phone Number:</label>
+                                <input type="tel" id='phone' name="phone" placeholder="10-digit phone number" style="width:300px; height: 40px;" onKeyup="checkform()" pattern="[0-9]{10}">
+                            </div>                    
+                        </div>
+                        <button class="ui primary button" id="submitbutton" style="color: cornsilk; background-color: cornflowerblue; margin-left: 34%; margin-top: 20px;" disabled="disabled">Submit</button>
+                    </div>
+                </form>
+                <br />
+            </div>	
+		</div>
+	</div>
+    
+  
+    <!-- Write your html code here -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <script> 
+        $(document).ready(function(){
+             $('.ui.dropdown') .dropdown();
+       });
+    </script>
+    <script type="text/javascript" language="javascript">
+        function checkform()
+        {
+            const f = document.getElementById('name').value.length;
+            const e = document.getElementById('password').value.length;
+            const g = document.getElementById('email').value.length;
+            const h = document.getElementById('phone').value.length;
+            let cansubmit = true;
+
+            if(f*e*g*h===0){
+                cansubmit=false;
+            }
+    
+            
+    
+            document.getElementById('submitbutton').disabled = !cansubmit;
+        }
+    </script> 
+  </body>
+</html>
