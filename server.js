@@ -999,9 +999,9 @@ app.post('/extend/:id',Admin,(req,res) => {
                     [id,deadline,'Not'],(err,result) => {
                         if(err) throw err;
                         const pusher = new Pusher({
-                            appId: '1055975',
-                            key: 'ddb9920047594e5985e8',
-                            secret: '6786fa44aa8068801e92',
+                            appId: 'ID',
+                            key: 'KEY',
+                            secret: 'SECRET',
                             cluster: 'ap2',
                             encrypted: true
                         });
