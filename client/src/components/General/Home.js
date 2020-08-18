@@ -115,8 +115,8 @@ function Map() {
 }
 
 const MapWrapped = withScriptjs(withGoogleMap(Map));
-let url="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDyhZOEsdviYHehMLdhKLdiXbeHhGLQ6vg";
-let route="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyhZOEsdviYHehMLdhKLdiXbeHhGLQ6vg&callback=initMap";
+let url="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=KEY";
+let route="https://maps.googleapis.com/maps/api/js?key=KEY&callback=initMap";
 
 
 export default class Home extends Component{
